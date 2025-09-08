@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Inicio
+{% endblock %}
+
+{% block content %}
+    <section id="title" class="gradient-background">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <main class="d-flex flex-column justify-content-center align-items-center flex-grow-1 text-white px-3">
+                <h1>Conectá.</h1>
+                <p class="lead">Pequeños posts, gran diseño. Documentá, compartí y escalá tu contenido.</p>
+                <p class="lead"><a href="{{ url_for('blog.blogs') }}"
+                                   class="btn btn-lg btn-light fw-bold border-white bg-white">Ver blogs</a></p></main>
+        </div>
+    </section>
+{% endblock %}
+
