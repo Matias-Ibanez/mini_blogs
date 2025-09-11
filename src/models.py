@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text
 from datetime import datetime
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
@@ -24,4 +25,17 @@ class BlogPost(db.Model):
             "body": self.body,
             "author": self.author,
             "img_url": self.img_url
+        }
+
+class User(UserMixin, db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name : Mapped[str] = mapped_column(String(250), nullable=False)
+    email: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
+    password: Mapped[str] = mapped_column(String(250), nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            "password": self.password
         }

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-6 mx-auto col-lg-4">
+        <h2 class="text-center mb-4">Login</h2>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form class="p-3 border rounded-3 bg-light" method="POST" action="{{ url_for('blog.login') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-floating mb-2">
+                {{ form.email(class="form-control", id="floatingEmail") }}
+                {{ form.email.label(for="floatingEmail") }}
+            </div>
+
+            <div class="form-floating mb-2">
+                {{ form.password(class="form-control", id="floatingPassword") }}
+                {{ form.password.label(for="floatingPassword") }}
+            </div>
+
+            {{ form.submit(class="w-100 btn btn-sm btn-primary", type="submit") }}
+
+            <hr class="my-3">
+            <small class="text-muted">Al hacer clic en "Sign up", aceptás los términos de uso.</small>
+        </form>
+    </div>
+
+
+{% endblock %}
+
